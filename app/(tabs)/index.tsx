@@ -1,56 +1,27 @@
-import { View, Text, StyleSheet, Pressable } from 'react-native'
+import { View, Text, StyleSheet, Pressable, useColorScheme } from 'react-native'
 import AntDesign from '@expo/vector-icons/AntDesign';
 import { Link } from 'expo-router';
+import style from "@/utils/style"
 
 const index = () => {
+
+  const colorTheme = useColorScheme()
+
+  const themeStyle = colorTheme === "light" ? style.lightTheme : style.darkTheme
+
   return (
-<View style={styles.container}>
-      <Text style={styles.heading}>Accomplish your goals!</Text>
-      <Text style={styles.text}>Organize it</Text>
-      <Link style={styles.button} href={"/home"}>
-        <Text style={styles.buttonText}>Let's go</Text>
-        <AntDesign name="arrowright" size={24} color="black" />
+    <View style={[style.styles.container, themeStyle.container]}>
+      <Text style={[style.styles.heading, themeStyle.heading]}>Accomplish your goals!</Text>
+      <Text style={[style.styles.text , themeStyle.text]}>Organize it</Text>
+      <Pressable style={[style.styles.button, themeStyle.button]}>
+      <Link href={"/home"}>
+        <AntDesign name="arrowright" size={24} style={themeStyle.buttonText} />
       </Link>  
+      </Pressable>
     </View>
   )
 }
 
-const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
-      backgroundColor: 'black',
-      padding:10,
-      gap:10
-    },
-    heading: {
-      color:"white",
-      fontSize:30,
-      fontWeight:"bold",
-    },
-    text: {
-      color:"gray",
-      fontSize:18,
-      fontStyle:"italic"
-    },
-    button: {
-      backgroundColor: 'white',
-      display:"flex",
-      flexDirection:"row",
-      paddingVertical: 15,
-      paddingHorizontal: 23,
-      width: 150,
-      marginTop: 50,
-      borderRadius: 8,
-      alignItems: 'center',
-      justifyContent:"center",
-      gap:10
-    },
-    buttonText: {
-      fontSize: 18,
-      color: 'black',
-    },
-  });
 
 export default index
+
