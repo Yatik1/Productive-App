@@ -6,7 +6,6 @@ import style from "@/utils/style"
 const index = () => {
 
   const colorTheme = useColorScheme()
-
   const themeStyle = colorTheme === "light" ? style.lightTheme : style.darkTheme
 
   return (
