@@ -6,10 +6,11 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context'
 import { Colors } from '@/constants/Colors';
 import * as WebBrowser from 'expo-web-browser';
 
-export default function index() {
+function index() {
 
   const {startOAuthFlow : gitOAuth} = useOAuth({strategy:'oauth_github'})
   const {startOAuthFlow : googleOAuth} = useOAuth({strategy:'oauth_google'})
+
 
   const {top} = useSafeAreaInsets()
 
@@ -58,7 +59,7 @@ export default function index() {
           <Ionicons name='logo-google' size={24} />
           <Text style={styles.buttonText}>Continue with Google</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={[styles.button]}>
+        <TouchableOpacity style={[styles.button]} onPress={handleGoogleOAuth}>
           <Ionicons name='mail' size={24} />
           <Text style={styles.buttonText}>Continue with Email</Text>
         </TouchableOpacity>
@@ -129,4 +130,4 @@ const styles = StyleSheet.create({
   }
 })
 
-// export default index
+export default index
