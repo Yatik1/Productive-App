@@ -3,7 +3,13 @@ import { Colors } from "@/constants/Colors";
 
 const Layout = () => {
     return (
-        <Tabs>
+        <Tabs
+          ignoresTopSafeArea
+          hapticFeedbackEnabled
+          screenOptions={{
+            tabBarActiveTintColor:Colors.primary,
+          }}
+        >
         <Tabs.Screen
           name="today"
           options={{

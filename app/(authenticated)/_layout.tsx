@@ -4,7 +4,10 @@ import { Stack } from "expo-router"
 
 export default function Layout () {
     return (
-        <Stack screenOptions={{headerShown:false}} />
+        <Stack screenOptions={{contentStyle:{backgroundColor:"#fff"}}}>
+            <Stack.Screen name="(tabs)" options={{headerShown:false}} />
+            <Stack.Screen name="task/new" options={{presentation:'modal'}} />
+        </Stack>
 
     )
 }
