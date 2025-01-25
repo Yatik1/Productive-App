@@ -5,7 +5,7 @@ import Fab from '@/components/Fab'
 const index = () => {
   return (
     <View style={styles.container}>
-      <Text>Today</Text>
+      <Text>Upcoming</Text>
       <Fab />
     </View>
   )
