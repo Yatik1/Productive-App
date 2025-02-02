@@ -1,20 +1,21 @@
 import { View, Text, StyleSheet, SectionList } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { Suspense, useEffect, useState } from 'react'
 import { format } from 'date-fns';
 import { Section, Todo } from '@/types/types';
-import TaskRow from '@/components/TaskRow'
+import TaskRow, { Skeleton } from '@/components/TaskRow'
 
 import { Colors } from '@/constants/Colors'
 import Fab from '@/components/Fab';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-  const uri = "http://127.0.0.1:8000/api/todo/all/"
+  const uri = "https://todo-django-api-y8py.onrender.com/api/todo/all/"
 
 const index = () => {
 
     const [sectionListData,setSectionListData] = useState<Section[]>([])
-    
+    const {top} = useSafeAreaInsets()
+   
     const fetchData = async () => {
-
       try {
         const response = await fetch(uri)
         const jsonResponse : Todo[] = await response.json()
@@ -49,7 +50,8 @@ const index = () => {
 
 
   return (
-    <View style={styles.container}>
+    <Suspense fallback={ <Skeleton /> } >
+      <View style={[styles.container, {paddingTop: top+28} ]}>
       <SectionList 
         showsVerticalScrollIndicator={false}
         contentInsetAdjustmentBehavior='automatic'
@@ -59,6 +61,7 @@ const index = () => {
       />
       <Fab />
     </View>
+    </Suspense>
   )
 }
 
