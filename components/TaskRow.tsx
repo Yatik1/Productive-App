@@ -1,8 +1,9 @@
 import { Colors } from "@/constants/Colors"
 import { Todo } from "@/types/types"
 import { Link } from "expo-router"
+import React, { Suspense } from "react";
 import { useState } from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native"
+import { SectionList, StyleSheet, Text, TouchableOpacity, View } from "react-native"
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 
 interface TaskRowProps {
@@ -16,7 +17,7 @@ const TaskRow = ({task, fetchData}:TaskRowProps) => {
 
     const onCheck = async () => {
         try {
-            const response = await fetch(`http://127.0.0.1:8000/api/todo/update/${Number(task.id)}/`, {
+            const response = await fetch(`https://todo-django-api-y8py.onrender.com/api/todo/update/${Number(task.id)}/`, {
                 method: 'PUT',
                 headers: {
                     'Content-Type':'application/json',
@@ -42,7 +43,7 @@ const TaskRow = ({task, fetchData}:TaskRowProps) => {
     };
 
     return (
-        <View>
+        <Suspense fallback={<Skeleton />}>
             <Link href={`/task/${task.id}`} style={styles.container} asChild>
                 <TouchableOpacity>
                     <View style={styles.row}>
@@ -57,11 +58,17 @@ const TaskRow = ({task, fetchData}:TaskRowProps) => {
                     </View>
                 </TouchableOpacity>
             </Link>
-        </View>
+        </Suspense>
     )
 }
 
 export default TaskRow
+
+export function Skeleton() {
+    return (
+        <View style={[styles.container,styles.skeleton]}/>
+    )
+}
 
 const styles = StyleSheet.create({
     container: {
@@ -78,5 +85,9 @@ const styles = StyleSheet.create({
     name:{
         fontSize:16,
         flex:1
+    },
+    skeleton:{
+        backgroundColor:"black",
+        height:40
     }
 })
