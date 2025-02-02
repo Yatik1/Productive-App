@@ -20,27 +20,11 @@ const Layout = () => {
           }}
         />
         <Tabs.Screen
-          name="upcoming"
-          options={{
-            title: 'Upcoming',
-            tabBarIcon: () => ({ sfSymbol: 'calendar' }),
-          }}
-        />
-        <Tabs.Screen
-          name="search"
-          options={{
-            title: 'Search',
-            tabBarIcon: ({ focused }: { focused: boolean }) => ({
-              sfSymbol: focused ? 'text.magnifyingglass' : 'magnifyingglass',
-            }),
-          }}
-        />
-        <Tabs.Screen
           name="browse"
           options={{
-            title: 'Browse',
+            title: 'Profile',
             tabBarIcon: ({ focused }: { focused: boolean }) => ({
-              sfSymbol: focused ? 'doc.text.image.fill' : 'doc.text.image',
+              sfSymbol: focused ? 'person.circle' : 'person.circle.fill',
             }),
           }}
         />
