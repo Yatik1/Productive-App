@@ -50,7 +50,6 @@ const index = () => {
 
 
   return (
-    <Suspense fallback={ <Skeleton /> } >
       <View style={[styles.container, {paddingTop: top+28} ]}>
       <SectionList 
         showsVerticalScrollIndicator={false}
@@ -61,7 +60,6 @@ const index = () => {
       />
       <Fab />
     </View>
-    </Suspense>
   )
 }
 
